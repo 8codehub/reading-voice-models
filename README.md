@@ -1,12 +1,16 @@
 # Reading — voice models
 
-Mirror of the [Kitten TTS 2 Nano](https://huggingface.co/KittenML/kitten-tts-2-nano) files the
-Reading app downloads for read-aloud in languages other than English (English is built into the app).
+Files the Reading app downloads for read-aloud: the [Kitten TTS 2 Nano](https://huggingface.co/KittenML/kitten-tts-2-nano)
+models and voices, and the word → pronunciation dictionaries. Nothing is built into the app; a
+language is downloaded the first time it's chosen.
 
 The files are in the **Releases** of this repository, not in the git tree:
 
+### Release `kitten-tts-2-nano-v1` — models and voices
+
 | Language | Model | Voices |
 |---|---|---|
+| English | `kitten_tts_2_nano_en.onnx` | `voices_en.npz` |
 | German | `kitten_tts_2_nano_de.onnx` | `voices_de.npz` |
 | Spanish | `kitten_tts_2_nano_es.onnx` | `voices_es.npz` |
 | Italian | `kitten_tts_2_nano_it.onnx` | `voices_it.npz` |
@@ -17,6 +21,14 @@ The files are in the **Releases** of this repository, not in the git tree:
 
 Download URL: `https://github.com/8codehub/reading-voice-models/releases/download/kitten-tts-2-nano-v1/<file>`
 
+### Release `lexicons-v1` — pronunciation dictionaries
+
+`lexicon_<code>.tsvz` for en, de, es, it, pt, ru, hi, fr: gzip-compressed, sorted `word<TAB>phonemes`
+lines (named `.tsvz`, not `.gz`, because Android's packager unzips `.gz` files). Hashes in
+[`SHA256SUMS-lexicons`](SHA256SUMS-lexicons).
+
+Download URL: `https://github.com/8codehub/reading-voice-models/releases/download/lexicons-v1/<file>`
+
 - **Unmodified** copies of KittenML's revision `54526b8d8e45333cd720d3a082c106aacf416064`.
   [`SHA256SUMS`](SHA256SUMS) lists each file's hash; the app checks every download against it.
 - A release is never edited after publishing. New model versions get a new tag, so the files an
@@ -24,4 +36,9 @@ Download URL: `https://github.com/8codehub/reading-voice-models/releases/downloa
 
 ## License
 
-The models are KittenML's, under the [Apache License 2.0](LICENSE). See [`NOTICE`](NOTICE).
+- **Models and voices**: KittenML's, under the [Apache License 2.0](LICENSE). See [`NOTICE`](NOTICE).
+- **`lexicon_en.tsvz`**: from [misaki](https://github.com/hexgrad/misaki) (Apache 2.0), which includes
+  the CMU Pronouncing Dictionary (BSD-style).
+- **The other `lexicon_*.tsvz`**: words chosen from [FrequencyWords](https://github.com/hermitdave/FrequencyWords)
+  by Hermit Dave (CC BY-SA 4.0), pronunciations generated with espeak-ng used as a tool. Shared under
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
